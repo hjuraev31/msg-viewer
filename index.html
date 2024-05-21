@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>msg-viewer</title>
+    <title>File Upload</title>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <h1>MSG viewer for CERT</h1>
+    <div class="container">
+        <form id="uploadForm">
+            <input type="file" id="fileInput" name="file" required>
+            <button type="submit" id="uploadButton">Upload</button>
+        </form>
+    </div>
+    <script src="utils/upload_file.js"></script>
 </body>
 </html>
