@@ -16,7 +16,9 @@ document.getElementById('fileInput').addEventListener('change', function() {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            alert('File uploaded successfully!');
+            alert('File uploaded successfully, redirecting...');
+            const newTabUrl = `newTab.html?key=${encodeURIComponent(data.key)}`;
+            window.open(newTabUrl, '_blank');
         })
         .catch(error => {
             console.error('Error:', error);
