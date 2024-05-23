@@ -9,7 +9,7 @@ document.getElementById('fileInput').addEventListener('change', function() {
     const fileInput = document.getElementById('fileInput');
     
     if (fileInput.files.length > 0) {
-        fetch('https://justin.com/api/v3/files', {
+        fetch('http://127.0.0.1:5000/api/upload_msg', {
             method: 'POST',
             body: formData
         })
@@ -17,7 +17,7 @@ document.getElementById('fileInput').addEventListener('change', function() {
         .then(data => {
             console.log('Success:', data);
             alert('File uploaded successfully, redirecting...');
-            const newTabUrl = `newTab.html?key=${encodeURIComponent(data.key)}`;
+            const newTabUrl = `result.html?key=${encodeURIComponent(data.uuid)}`;
             window.open(newTabUrl, '_blank');
         })
         .catch(error => {

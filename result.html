@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>result</title>
+    <link rel="stylesheet" href="styles/report.css">
+    <title>report</title>
 </head>
 <body>
-    <h1>RESULTS</h1>
+    <div class="email-container">
+        <div class="header">
+            <h1>Report</h1>
+            <button class="delete-button" onclick="deleteReport()">Delete Report</button>
+        </div>
+        <div class="email-details">
+            <p><strong>Subject:</strong> <span id="email-subject"></span></p>
+            <p><strong>From:</strong> <span id="email-from"></span></p>
+            <p><strong>To:</strong> <span id="email-to"></span></p>
+            <p><strong>CC:</strong> <span id="email-cc"></span></p>
+            <p><strong>BCC:</strong> <span id="email-bcc"></span></p>
+            <p><strong>Attachments:</strong> <span id="email-attachments"></span></p>
+            <p><strong>Date:</strong> <span id="email-date"></span></p>
+        </div>
+        <div class="email-body">
+            <p id="email-body"></p>
+        </div>
+    </div>
     <script src="utils/display_result.js"></script>
 </body>
 </html>
