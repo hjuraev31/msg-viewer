@@ -40,3 +40,12 @@ python main.py
 - Backend: Python, Flask
 - Frontend: HTML, CSS, JavaScript
 - Others: win32com, pythoncom, json, os, requests, uuid
+
+## Contributing
+We welcome contributions from the community! If you'd like to contribute, please follow these steps:
+
+- Fork the repository.
+- Create a new branch (git checkout -b feature-branch).
+- Make your changes and commit them (git commit -m 'Add some feature').
+- Push to the branch (git push origin feature-branch).
+- Open a Pull Request.
