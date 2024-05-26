@@ -6,6 +6,17 @@ function fetchData(key) {
         .catch(error => console.error('Error fetching data:', error));
 }
 
+function getVtReport(key){
+    const apiUrl = `http://127.0.0.1:5000/api/vt_analysis/${key}`;
+    
+    return fetch(apiUrl, {method: 'POST'})
+        .then(response => {
+            response = response.json();
+            console.log(response);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
@@ -41,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (key) {
         setTimeout(() => {
+            getVtReport(key[1]);
             fetchData(key[1]).then(data => {
                 if (data) {
                     displayData(data);
