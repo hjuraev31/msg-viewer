@@ -25,4 +25,4 @@ def get_file_report(path):
 
     url = upload_file(path, headers)['data']['links']['self']
     response = requests.get(url, headers=headers)
-    return json.loads(response.text)
+    return json.loads(response.text)['data']['attributes']['stats']
