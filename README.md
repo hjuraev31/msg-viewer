@@ -16,7 +16,7 @@ To get started with **msg-viewer and analyzer**, you'll need to install the foll
 
 ```bash
 pip install pywin32 json os flask requests uuid
-
+```
 ## Technologies Used
 - Backend: Python, Flask
 - Frontend: HTML, CSS, JavaScript
