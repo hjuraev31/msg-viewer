@@ -6,16 +6,6 @@ function fetchData(key) {
         .catch(error => console.error('Error fetching data:', error));
 }
 
-function getVtReport(key){
-    const apiUrl = `http://127.0.0.1:5000/api/vt_analysis/${key}`;
-    
-    return fetch(apiUrl, {method: 'POST'})
-        .then(response => {
-            response = response.json();
-            console.log(response);
-        })
-        .catch(error => console.error('Error fetching data:', error));
-}
 
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -27,11 +17,8 @@ function getFileName(path) {
     return parts[parts.length - 1];
 }
 
-function displayData(data) {
-    //=====================commented lines for test========================
-    // const resultDiv = document.getElementById('result');
-    // resultDiv.textContent = JSON.stringify(data, null, 2);
-    //=====================commented lines for test========================
+
+function displayMsgData(data) {
     let attachments = [];
     for(val of data.data.attachments) {
         attachments.push(getFileName(val));
@@ -46,22 +33,84 @@ function displayData(data) {
     document.getElementById('email-body').innerText = data.data.body;
 }
 
+//=================================================CHART FOR REPORT========================================
+
+const ctx = document.getElementById('pieChart').getContext('2d');
+const pieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'Dataset',
+        data: [],
+        backgroundColor: [
+          'rgba(54, 162, 235, 0.8)', // Blue
+          'rgba(255, 99, 132, 0.8)',  // Red
+          'rgba(75, 192, 192, 0.8)',  // Green
+          'rgba(255, 206, 86, 0.8)',  // Yellow
+          'rgba(255, 159, 64, 0.8)',  // Orange
+          'rgba(153, 102, 255, 0.8)', // Purple
+          'rgba(210, 105, 30, 0.8)',  // Brown
+          'rgba(169, 169, 169, 0.8)'  // Gray
+        ]
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return `${context.label}: ${context.raw}`;
+            }
+          }
+        },
+        legend: {
+            position: 'right',
+        },
+        title: {
+          display: false,
+          text: 'VT report'
+        }
+      }
+    }
+  });
+
+function updateChart(data) {
+    pieChart.data.labels = Object.keys(data);
+    pieChart.data.datasets[0].data = Object.values(data);
+    pieChart.update();
+  }
+  
+async function fetchReportData(key) {
+    const response = await fetch(`http://127.0.0.1:5000/api/vt_analysis/${key}`, {method: 'POST'});
+    const data = await response.json();
+    updateChart(data);
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const key = getQueryParam('key').split('uploads\\');
-
     if (key) {
         setTimeout(() => {
-            getVtReport(key[1]);
+            fetchReportData(key[1]);
             fetchData(key[1]).then(data => {
                 if (data) {
-                    displayData(data);
+                    displayMsgData(data);
                 } else {
                     console.error('No data returned from API');
                 }
             });
         }, 3000);
+        
     } else {
         console.error('Key parameter not found in URL');
     }
 });
+
+
+
+
+
+
+

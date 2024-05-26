@@ -49,4 +49,7 @@ body {
     border: 1px solid #ddd;
 } 
 
-
+.chart-container {
+    width: 50%;
+    margin: auto;
+}
