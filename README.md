@@ -21,11 +21,10 @@ pip install pywin32 json os flask requests uuid
 ## Usage
 - 1 Clone the repository:
 ```bash
-git clone https://github.com/yourusername/msg-viewer-analyzer.git
-```
+https://github.com/hjuraev31/msg-viewer.git```
 - 2 Navigate to the project directory:
 ```bash
-cd msg-viewer-analyzer
+cd msg-viewer
 ```
 - 3 Start the application:
 ```bash
