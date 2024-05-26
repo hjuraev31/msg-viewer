@@ -17,6 +17,22 @@ To get started with **msg-viewer and analyzer**, you'll need to install the foll
 ```bash
 pip install pywin32 json os flask requests uuid
 ```
+
+## Usage
+- 1 Clone the repository:
+```bash
+git clone https://github.com/yourusername/msg-viewer-analyzer.git
+```
+- 2 Navigate to the project directory:
+```bash
+cd msg-viewer-analyzer
+```
+- 3 Start the application:
+```bash
+python main.py
+```
+- 4 Open index.html from the frontend branch in your web browser and upload your .msg file to view its content and receive the virus check report.
+
 ## Technologies Used
 - Backend: Python, Flask
 - Frontend: HTML, CSS, JavaScript
