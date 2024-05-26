@@ -21,15 +21,19 @@ pip install pywin32 json os flask requests uuid
 ## Usage
 - 1 Clone the repository:
 ```bash
-https://github.com/hjuraev31/msg-viewer.git```
+https://github.com/hjuraev31/msg-viewer.git
+```
+
 - 2 Navigate to the project directory:
 ```bash
 cd msg-viewer
 ```
+
 - 3 Start the application:
 ```bash
 python main.py
 ```
+
 - 4 Open index.html from the frontend branch in your web browser and upload your .msg file to view its content and receive the virus check report.
 
 ## Technologies Used
