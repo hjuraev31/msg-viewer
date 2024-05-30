@@ -44,14 +44,14 @@ const pieChart = new Chart(ctx, {
         label: 'Dataset',
         data: [],
         backgroundColor: [
-          'rgba(54, 162, 235, 0.8)', // Blue
-          'rgba(255, 99, 132, 0.8)',  // Red
-          'rgba(75, 192, 192, 0.8)',  // Green
-          'rgba(255, 206, 86, 0.8)',  // Yellow
-          'rgba(255, 159, 64, 0.8)',  // Orange
-          'rgba(153, 102, 255, 0.8)', // Purple
-          'rgba(210, 105, 30, 0.8)',  // Brown
-          'rgba(169, 169, 169, 0.8)'  // Gray
+          'rgba(54, 162, 235, 1)', // Blue
+          'rgba(255, 99, 132, 1)',  // Red
+          'rgba(75, 192, 192, 1)',  // Green
+          'rgba(255, 206, 86, 1)',  // Yellow
+          'rgba(255, 159, 64, 1)',  // Orange
+          'rgba(153, 102, 255, 1)', // Purple
+          'rgba(210, 105, 30, 1)',  // Brown
+          'rgba(169, 169, 169, 1)'  // Gray
         ]
       }]
     },
@@ -93,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const key = getQueryParam('key').split('uploads\\');
     if (key) {
         setTimeout(() => {
-            fetchReportData(key[1]);
             fetchData(key[1]).then(data => {
                 if (data) {
                     displayMsgData(data);
@@ -102,13 +101,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, 3000);
-        
+        setTimeout(fetchReportData(key[1]), 3000);
     } else {
         console.error('Key parameter not found in URL');
     }
 });
 
 
+
+//==============================DELETE REPORT=============================
+function deleteReport(key) {
+  const apiUrl = `http://127.0.0.1:5000/api/delete_file/${key}`;
+  return fetch(apiUrl, {method: 'POST'})
+      .then(response => {
+        response.json()
+        if(response.status == 200) {
+          alert('Report has been deleted!');
+          window.location.href = '/';
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        alert(`Error: ${error}`);
+      });
+}
+
+document.getElementById('delete-button').addEventListener('click', () => {
+  const key = getQueryParam('key').split('uploads\\');
+  deleteReport(key[1]);
+});
 
 
 
