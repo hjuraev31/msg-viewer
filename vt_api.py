@@ -1,5 +1,6 @@
 import requests
 import json
+import time
 
 api_key = "73ad9c896bddde43ebc05d270e751dae284673843e36545ca7db5cec838563d2"
 headers = {
@@ -13,6 +14,7 @@ def upload_file(path, headers):
         "file": (path, open(path, "rb")) 
     }
     response = requests.post(url, files=files, headers=headers)
+    time.sleep(3)
     return json.loads(response.text)
 
 def get_file_report(path):
@@ -25,4 +27,5 @@ def get_file_report(path):
 
     url = upload_file(path, headers)['data']['links']['self']
     response = requests.get(url, headers=headers)
+    time.sleep(2)
     return json.loads(response.text)['data']['attributes']['stats']

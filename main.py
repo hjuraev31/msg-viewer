@@ -4,6 +4,7 @@ import os
 from msg_parser import parse_message
 from flask_cors import CORS
 from vt_api import get_file_report
+import shutil
 app = Flask(__name__)
 CORS(app)
 
@@ -34,8 +35,18 @@ def upload_msg():
         }), 400
 
 @app.route('/api/delete_file/<string:uuid>', methods=['POST'])
-def delete_report():
-    return 1
+def delete_report(uuid):
+    path = r'C:\Users\hjura\OneDrive\Рабочий стол\SWE\msg-viewer-backend\msg-viewer\uploads'
+    try:
+        if os.path.isdir(path + '\\' + uuid):
+            shutil.rmtree(path + '\\' + uuid)
+            return jsonify({
+                'message': f'Report {uuid} deleted',
+            }), 200
+    except OSError as e:
+        return jsonify({
+            'message': f'Error occured: {e.strerror}',
+        })
 
 @app.route('/api/vt_analysis/<string:uuid>', methods=['POST'])
 def vt_analysis(uuid):
